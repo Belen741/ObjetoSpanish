@@ -165,7 +165,7 @@ export const combinedObjectsSePage2: RewriteExercise[] = [
   },
   {
     id: 3,
-    original: "Pedro vio a sus amigos y les mostró las fotos.",
+    original: "Pedro les mostró las fotos a sus amigos.",
     correctAnswer: "Pedro se las mostró.",
     explanation: "Direct = las fotos → las. Indirect = a sus amigos (les) → se.",
   },
