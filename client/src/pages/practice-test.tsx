@@ -83,20 +83,20 @@ export default function PracticeTest() {
                 <h3 className="font-bold text-lg mb-2 text-primary flex items-center gap-2">
                     <AlertCircle className="h-5 w-5" /> Recommendation
                 </h3>
-                <p className="text-foreground/80 leading-relaxed">
+                <p className="text-foreground/80 leading-relaxed mb-4">
                     {recommendation.message}
-                    {recommendation.links.length > 0 && (
-                      <span className="block mt-2">
-                        {recommendation.links.map((link, index) => (
-                          <Link key={index} href={link.href}>
-                            <span className="inline-block mt-1 text-primary font-semibold underline hover:text-primary/80 cursor-pointer">
-                              {link.text}
-                            </span>
-                          </Link>
-                        ))}
-                      </span>
-                    )}
                 </p>
+                {recommendation.links.length > 0 && (
+                  <div className="flex flex-col gap-2">
+                    {recommendation.links.map((link, index) => (
+                      <Link key={index} href={link.href} className="w-full">
+                        <Button className="w-full h-14 text-lg bg-primary hover:bg-primary/90 text-primary-foreground font-semibold shadow-lg">
+                          {link.text} <span className="ml-2">→</span>
+                        </Button>
+                      </Link>
+                    ))}
+                  </div>
+                )}
             </div>
 
             <div className="space-y-4 mb-8 max-h-[400px] overflow-y-auto pr-2">
@@ -130,15 +130,16 @@ export default function PracticeTest() {
 
             <div className="flex gap-4">
                 <Link href="/practice" className="w-full">
-                    <Button variant="outline" className="w-full h-12 text-lg">
+                    <Button variant="outline" className="w-full h-12 text-base">
                         Back to Practice
                     </Button>
                 </Link>
                 <Button 
+                    variant="outline"
                     onClick={() => window.location.reload()} 
-                    className="w-full h-12 text-lg bg-secondary hover:bg-secondary/90 text-secondary-foreground"
+                    className="w-full h-12 text-base"
                 >
-                    <RotateCcw className="mr-2 h-5 w-5" /> Retry Test
+                    <RotateCcw className="mr-2 h-4 w-4" /> Retry Test
                 </Button>
             </div>
             </div>
