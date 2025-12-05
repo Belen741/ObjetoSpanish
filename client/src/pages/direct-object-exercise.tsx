@@ -15,10 +15,12 @@ type PageType = "1" | "2" | "3";
 
 function MultipleChoicePage({ 
   exercises, 
-  pageNum 
+  pageNum,
+  instruction 
 }: { 
   exercises: MultipleChoiceExercise[]; 
   pageNum: string;
+  instruction: string;
 }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
@@ -87,7 +89,11 @@ function MultipleChoicePage({
           Score: {score}/{currentIndex + (isAnswered ? 1 : 0)}
         </span>
       </div>
-      <Progress value={progress} className="h-2 mb-8" />
+      <Progress value={progress} className="h-2 mb-6" />
+
+      <div className="bg-secondary/5 border border-secondary/20 rounded-xl p-4 mb-6">
+        <p className="text-secondary font-medium">{instruction}</p>
+      </div>
 
       <div className="bg-white rounded-2xl p-8 border border-border shadow-sm">
         <div className="mb-6">
@@ -151,7 +157,7 @@ function MultipleChoicePage({
   );
 }
 
-function RewritePage({ exercises }: { exercises: RewriteExercise[] }) {
+function RewritePage({ exercises, instruction }: { exercises: RewriteExercise[]; instruction: string }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [userAnswer, setUserAnswer] = useState("");
   const [isAnswered, setIsAnswered] = useState(false);
@@ -232,10 +238,13 @@ function RewritePage({ exercises }: { exercises: RewriteExercise[] }) {
           Score: {score}/{currentIndex + (isAnswered ? 1 : 0)}
         </span>
       </div>
-      <Progress value={progress} className="h-2 mb-8" />
+      <Progress value={progress} className="h-2 mb-6" />
+
+      <div className="bg-secondary/5 border border-secondary/20 rounded-xl p-4 mb-6">
+        <p className="text-secondary font-medium">{instruction}</p>
+      </div>
 
       <div className="bg-white rounded-2xl p-8 border border-border shadow-sm">
-        <p className="text-sm text-muted-foreground mb-2">Rewrite the sentence replacing the direct object with the correct pronoun:</p>
         <p className="text-xl font-semibold text-foreground mb-6">{current.original}</p>
 
         <div className="mb-6">
@@ -365,11 +374,22 @@ export default function DirectObjectExercise() {
         {!selectedPage ? (
           <PageSelector currentPage={selectedPage} onSelect={handleSelectPage} />
         ) : selectedPage === "1" ? (
-          <MultipleChoicePage exercises={directObjectPage1} pageNum="1" />
+          <MultipleChoicePage 
+            exercises={directObjectPage1} 
+            pageNum="1" 
+            instruction="Replace the direct object in each sentence with the correct direct object pronoun."
+          />
         ) : selectedPage === "2" ? (
-          <RewritePage exercises={directObjectPage2} />
+          <RewritePage 
+            exercises={directObjectPage2} 
+            instruction="Rewrite each sentence by replacing the direct object with the correct pronoun."
+          />
         ) : (
-          <MultipleChoicePage exercises={directObjectPage3} pageNum="3" />
+          <MultipleChoicePage 
+            exercises={directObjectPage3} 
+            pageNum="3" 
+            instruction="Choose the correct answer that replaces the direct object with the right pronoun."
+          />
         )}
       </div>
     </div>
