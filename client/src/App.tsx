@@ -8,6 +8,8 @@ import Home from "@/pages/home";
 import Learn from "@/pages/learn";
 import Practice from "@/pages/practice";
 import PracticeTest from "@/pages/practice-test";
+import Exercises from "@/pages/exercises";
+import ExercisePlaceholder from "@/pages/exercise-placeholder";
 
 function Router() {
   return (
@@ -16,6 +18,8 @@ function Router() {
       <Route path="/learn" component={Learn} />
       <Route path="/practice" component={Practice} />
       <Route path="/practice/test" component={PracticeTest} />
+      <Route path="/practice/exercises" component={Exercises} />
+      <Route path="/practice/exercises/:type" component={ExercisePlaceholder} />
       <Route component={NotFound} />
     </Switch>
   );
