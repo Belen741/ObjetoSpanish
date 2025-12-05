@@ -1,5 +1,5 @@
 import { Link } from "wouter";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, PlayCircle, List } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export default function Practice() {
@@ -12,11 +12,39 @@ export default function Practice() {
           </Button>
         </Link>
         
-        <div className="bg-white rounded-3xl p-8 md:p-12 border border-border shadow-sm">
-          <h1 className="text-4xl font-bold mb-6 text-secondary">Practice Exercises</h1>
-          <p className="text-xl text-muted-foreground">
-            Practice exercises will go here. This is a placeholder for the practice module.
-          </p>
+        <div className="flex flex-col items-center justify-center min-h-[60vh]">
+          <div className="w-full max-w-md space-y-8 text-center">
+            <div className="space-y-2">
+              <h1 className="text-4xl font-bold text-foreground">Ready to Practice?</h1>
+              <p className="text-muted-foreground text-lg">Test your knowledge of direct and indirect objects.</p>
+            </div>
+
+            <div className="flex flex-col gap-4">
+              {/* Try the test Button */}
+              <Link href="/practice/test">
+                <Button 
+                  size="lg" 
+                  className="w-full h-16 text-xl font-bold bg-secondary hover:bg-secondary/90 text-secondary-foreground shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all rounded-2xl"
+                  data-testid="button-try-test"
+                >
+                  <PlayCircle className="mr-3 h-6 w-6" />
+                  Try the test
+                </Button>
+              </Link>
+
+              {/* View all exercises Link */}
+              <Link href="/practice/exercises">
+                <Button 
+                  variant="ghost" 
+                  className="w-full h-12 text-lg text-muted-foreground hover:text-secondary hover:bg-secondary/5"
+                  data-testid="link-view-exercises"
+                >
+                  <List className="mr-2 h-5 w-5" />
+                  View all exercises
+                </Button>
+              </Link>
+            </div>
+          </div>
         </div>
       </div>
     </div>
