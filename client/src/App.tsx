@@ -10,6 +10,7 @@ import Practice from "@/pages/practice";
 import PracticeTest from "@/pages/practice-test";
 import Exercises from "@/pages/exercises";
 import DirectObjectExercise from "@/pages/direct-object-exercise";
+import IndirectObjectExercise from "@/pages/indirect-object-exercise";
 import ExercisePlaceholder from "@/pages/exercise-placeholder";
 
 function Router() {
@@ -22,6 +23,8 @@ function Router() {
       <Route path="/practice/exercises" component={Exercises} />
       <Route path="/practice/exercises/direct-object" component={DirectObjectExercise} />
       <Route path="/practice/exercises/direct-object/:page" component={DirectObjectExercise} />
+      <Route path="/practice/exercises/indirect-object" component={IndirectObjectExercise} />
+      <Route path="/practice/exercises/indirect-object/:page" component={IndirectObjectExercise} />
       <Route path="/practice/exercises/:type" component={ExercisePlaceholder} />
       <Route component={NotFound} />
     </Switch>
