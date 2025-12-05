@@ -84,7 +84,18 @@ export default function PracticeTest() {
                     <AlertCircle className="h-5 w-5" /> Recommendation
                 </h3>
                 <p className="text-foreground/80 leading-relaxed">
-                    {recommendation}
+                    {recommendation.message}
+                    {recommendation.links.length > 0 && (
+                      <span className="block mt-2">
+                        {recommendation.links.map((link, index) => (
+                          <Link key={index} href={link.href}>
+                            <span className="inline-block mt-1 text-primary font-semibold underline hover:text-primary/80 cursor-pointer">
+                              {link.text}
+                            </span>
+                          </Link>
+                        ))}
+                      </span>
+                    )}
                 </p>
             </div>
 
