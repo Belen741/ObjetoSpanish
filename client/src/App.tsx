@@ -15,6 +15,7 @@ import CombinedObjectsExercise from "@/pages/combined-objects-exercise";
 import CombinedObjectsSeExercise from "@/pages/combined-objects-se-exercise";
 import VerbTensesExercise from "@/pages/verb-tenses-exercise";
 import ExercisePlaceholder from "@/pages/exercise-placeholder";
+import AdvancedSpanishClasses from "@/pages/advanced-spanish-classes";
 
 function Router() {
   return (
@@ -35,6 +36,7 @@ function Router() {
       <Route path="/practice/exercises/verb-tenses" component={VerbTensesExercise} />
       <Route path="/practice/exercises/verb-tenses/:page" component={VerbTensesExercise} />
       <Route path="/practice/exercises/:type" component={ExercisePlaceholder} />
+      <Route path="/advanced-spanish-classes" component={AdvancedSpanishClasses} />
       <Route component={NotFound} />
     </Switch>
   );
