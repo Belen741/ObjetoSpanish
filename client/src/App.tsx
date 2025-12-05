@@ -12,6 +12,7 @@ import Exercises from "@/pages/exercises";
 import DirectObjectExercise from "@/pages/direct-object-exercise";
 import IndirectObjectExercise from "@/pages/indirect-object-exercise";
 import CombinedObjectsExercise from "@/pages/combined-objects-exercise";
+import CombinedObjectsSeExercise from "@/pages/combined-objects-se-exercise";
 import ExercisePlaceholder from "@/pages/exercise-placeholder";
 
 function Router() {
@@ -28,6 +29,8 @@ function Router() {
       <Route path="/practice/exercises/indirect-object/:page" component={IndirectObjectExercise} />
       <Route path="/practice/exercises/combined-objects" component={CombinedObjectsExercise} />
       <Route path="/practice/exercises/combined-objects/:page" component={CombinedObjectsExercise} />
+      <Route path="/practice/exercises/combined-objects-se" component={CombinedObjectsSeExercise} />
+      <Route path="/practice/exercises/combined-objects-se/:page" component={CombinedObjectsSeExercise} />
       <Route path="/practice/exercises/:type" component={ExercisePlaceholder} />
       <Route component={NotFound} />
     </Switch>
