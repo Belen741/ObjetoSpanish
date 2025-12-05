@@ -73,9 +73,9 @@ export const quizQuestions: Question[] = [
     instruction: "Change the sentence from present to simple past.",
     options: [
       { id: "a", text: "Yo te dije lo ayer." },
-      { id: "b", text: "Yo dije te lo ayer." },
-      { id: "c", text: "Yo te lo dije ayer." },
-      { id: "d", text: "Yo lo te dije ayer." },
+      { id: "b", text: "Yo dije te la ayer." },
+      { id: "c", text: "Yo te la dije ayer." },
+      { id: "d", text: "Yo la te dije ayer." },
     ],
     correctAnswer: "c",
   },
