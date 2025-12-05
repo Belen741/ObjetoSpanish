@@ -31,7 +31,7 @@ const exercises = [
     id: 5,
     title: "Use them in different verb tenses",
     description: "Apply object pronouns across tenses",
-    href: "/practice/exercises/different-tenses",
+    href: "/practice/exercises/verb-tenses",
   },
 ];
 
