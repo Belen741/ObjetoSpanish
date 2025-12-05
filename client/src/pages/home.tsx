@@ -21,32 +21,34 @@ export default function Home() {
         </header>
 
         <div className="grid md:grid-cols-2 gap-8 max-w-3xl mx-auto">
-          {/* Learn Button */}
-          <Link href="/learn">
-            <div className="group cursor-pointer bg-white border-2 border-border hover:border-primary/50 rounded-3xl p-8 h-full transition-all duration-300 hover:shadow-xl hover:shadow-primary/10 hover:-translate-y-1 relative overflow-hidden"
+          {/* Learn Button - Disabled */}
+          <div className="relative">
+            <div className="bg-gray-50 border-2 border-gray-200 rounded-3xl p-8 h-full relative overflow-hidden opacity-60 cursor-not-allowed"
                  data-testid="card-learn">
-              <div className="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 transition-opacity">
-                <BookOpen className="w-32 h-32 text-primary -rotate-12" />
+              <div className="absolute top-0 right-0 p-6 opacity-10">
+                <BookOpen className="w-32 h-32 text-gray-400 -rotate-12" />
               </div>
               
               <div className="relative z-10 flex flex-col h-full">
-                <div className="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center mb-6 text-primary group-hover:scale-110 transition-transform duration-300">
+                <div className="w-14 h-14 bg-gray-200 rounded-2xl flex items-center justify-center mb-6 text-gray-400">
                   <BookOpen className="w-7 h-7" />
                 </div>
                 
-                <h2 className="text-4xl font-bold text-gray-900 mb-3 group-hover:text-primary transition-colors">
+                <h2 className="text-4xl font-bold text-gray-400 mb-3">
                   Learn
                 </h2>
-                <p className="text-lg text-gray-600 font-medium leading-relaxed">
+                <p className="text-lg text-gray-400 font-medium leading-relaxed">
                   Learn how Spanish direct and indirect objects work
                 </p>
                 
-                <div className="mt-auto pt-8 flex items-center text-primary font-semibold opacity-0 group-hover:opacity-100 transition-opacity transform translate-y-2 group-hover:translate-y-0">
-                  Start Lesson <span className="ml-2">→</span>
+                <div className="mt-auto pt-8">
+                  <span className="inline-block px-3 py-1 bg-gray-200 text-gray-500 text-sm font-medium rounded-full">
+                    Coming Soon
+                  </span>
                 </div>
               </div>
             </div>
-          </Link>
+          </div>
 
           {/* Practice Button */}
           <Link href="/practice">
