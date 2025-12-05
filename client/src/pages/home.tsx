@@ -4,6 +4,17 @@ import { BookOpen, BrainCircuit, GraduationCap } from "lucide-react";
 export default function Home() {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center p-6 bg-background relative overflow-hidden">
+      {/* Advanced Classes Link - Top Right */}
+      <div className="absolute top-4 right-6 z-20">
+        <Link href="/advanced-spanish-classes">
+          <span className="inline-flex items-center gap-1.5 text-sm text-orange-500 hover:text-orange-600 transition-colors cursor-pointer"
+                data-testid="link-advanced-classes">
+            <GraduationCap className="w-4 h-4" />
+            Advanced Classes
+          </span>
+        </Link>
+      </div>
+
       {/* Background decorative elements */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none opacity-30">
         <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-primary/10 rounded-full blur-3xl" />
@@ -72,37 +83,6 @@ export default function Home() {
                 
                 <div className="mt-auto pt-8 flex items-center text-secondary font-semibold opacity-0 group-hover:opacity-100 transition-opacity transform translate-y-2 group-hover:translate-y-0">
                   Start Quiz <span className="ml-2">→</span>
-                </div>
-              </div>
-            </div>
-          </Link>
-        </div>
-
-        {/* Advanced Classes Button */}
-        <div className="mt-8 max-w-3xl mx-auto">
-          <Link href="/advanced-spanish-classes">
-            <div className="group cursor-pointer bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 rounded-2xl p-6 transition-all duration-300 hover:shadow-xl hover:shadow-orange-500/30 hover:-translate-y-1 relative overflow-hidden"
-                 data-testid="card-advanced-classes">
-              <div className="absolute top-0 right-0 p-4 opacity-20 group-hover:opacity-30 transition-opacity">
-                <GraduationCap className="w-24 h-24 text-white -rotate-12" />
-              </div>
-              
-              <div className="relative z-10 flex items-center justify-between">
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center text-white group-hover:scale-110 transition-transform duration-300">
-                    <GraduationCap className="w-6 h-6" />
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-bold text-white mb-1">
-                      Advanced 1:1 Classes
-                    </h3>
-                    <p className="text-sm text-white/80">
-                      Personalized Spanish coaching with Belén Martínez
-                    </p>
-                  </div>
-                </div>
-                <div className="text-white font-semibold opacity-0 group-hover:opacity-100 transition-opacity">
-                  Learn more <span className="ml-1">→</span>
                 </div>
               </div>
             </div>
