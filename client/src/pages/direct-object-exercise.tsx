@@ -160,35 +160,21 @@ function MultipleChoicePage({
 function RewritePage({ exercises, instruction }: { exercises: RewriteExercise[]; instruction: string }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [userAnswer, setUserAnswer] = useState("");
-  const [isAnswered, setIsAnswered] = useState(false);
+  const [showAnswer, setShowAnswer] = useState(false);
+  const [hasEvaluated, setHasEvaluated] = useState(false);
   const [score, setScore] = useState(0);
   const [isFinished, setIsFinished] = useState(false);
 
   const current = exercises[currentIndex];
   const progress = ((currentIndex) / exercises.length) * 100;
 
-  const normalizeAnswer = (str: string) => {
-    return str
-      .toLowerCase()
-      .trim()
-      .replace(/[.,;:!?¿¡]/g, "")
-      .replace(/\s+/g, " ")
-      .normalize("NFD")
-      .replace(/[\u0300-\u036f]/g, "")
-      .replace(/ñ/g, "n");
+  const handleShowAnswer = () => {
+    setShowAnswer(true);
   };
 
-  const checkAnswer = () => {
-    const normalized = normalizeAnswer(userAnswer);
-    const correct = normalizeAnswer(current.correctAnswer);
-    const alt = current.alternativeAnswer ? normalizeAnswer(current.alternativeAnswer) : null;
-    return normalized === correct || (alt && normalized === alt);
-  };
-
-  const handleCheck = () => {
-    if (!userAnswer.trim()) return;
-    setIsAnswered(true);
-    if (checkAnswer()) {
+  const handleSelfEvaluate = (correct: boolean) => {
+    setHasEvaluated(true);
+    if (correct) {
       setScore(s => s + 1);
     }
   };
@@ -197,7 +183,8 @@ function RewritePage({ exercises, instruction }: { exercises: RewriteExercise[];
     if (currentIndex < exercises.length - 1) {
       setCurrentIndex(i => i + 1);
       setUserAnswer("");
-      setIsAnswered(false);
+      setShowAnswer(false);
+      setHasEvaluated(false);
     } else {
       setIsFinished(true);
     }
@@ -206,7 +193,8 @@ function RewritePage({ exercises, instruction }: { exercises: RewriteExercise[];
   const handleRestart = () => {
     setCurrentIndex(0);
     setUserAnswer("");
-    setIsAnswered(false);
+    setShowAnswer(false);
+    setHasEvaluated(false);
     setScore(0);
     setIsFinished(false);
   };
@@ -233,8 +221,6 @@ function RewritePage({ exercises, instruction }: { exercises: RewriteExercise[];
     );
   }
 
-  const isCorrect = checkAnswer();
-
   return (
     <div>
       <div className="flex items-center justify-between mb-4">
@@ -242,7 +228,7 @@ function RewritePage({ exercises, instruction }: { exercises: RewriteExercise[];
           Exercise {currentIndex + 1} of {exercises.length}
         </span>
         <span className="text-sm font-medium text-primary">
-          Score: {score}/{currentIndex + (isAnswered ? 1 : 0)}
+          Score: {score}/{currentIndex}
         </span>
       </div>
       <Progress value={progress} className="h-2 mb-6" />
@@ -259,35 +245,26 @@ function RewritePage({ exercises, instruction }: { exercises: RewriteExercise[];
             type="text"
             value={userAnswer}
             onChange={(e) => setUserAnswer(e.target.value)}
-            disabled={isAnswered}
+            disabled={showAnswer}
             placeholder="Type your answer here..."
             className={`w-full p-4 rounded-xl border-2 text-lg font-medium transition-colors ${
-              isAnswered 
-                ? isCorrect 
-                  ? 'border-green-500 bg-green-50' 
-                  : 'border-red-500 bg-red-50'
+              showAnswer 
+                ? 'border-primary/50 bg-primary/5' 
                 : 'border-border focus:border-primary focus:outline-none'
             }`}
-            onKeyDown={(e) => {
-              if (e.key === 'Enter' && !isAnswered && userAnswer.trim()) {
-                handleCheck();
-              }
-            }}
           />
         </div>
 
-        {isAnswered && (
+        {showAnswer && (
           <div className="space-y-3 mb-6">
-            {!isCorrect && (
-              <div className="p-4 rounded-xl bg-green-50 border border-green-200">
-                <p className="text-sm font-medium text-green-800">
-                  Correct answer: <span className="font-bold">{current.correctAnswer}</span>
-                  {current.alternativeAnswer && (
-                    <span className="block mt-1">Alternative: {current.alternativeAnswer}</span>
-                  )}
-                </p>
-              </div>
-            )}
+            <div className="p-4 rounded-xl bg-green-50 border border-green-200">
+              <p className="text-sm font-medium text-green-800">
+                Correct answer: <span className="font-bold">{current.correctAnswer}</span>
+                {current.alternativeAnswer && (
+                  <span className="block mt-1">Alternative: {current.alternativeAnswer}</span>
+                )}
+              </p>
+            </div>
             <div className="p-4 rounded-xl bg-amber-50 border border-amber-200">
               <div className="flex items-start gap-3">
                 <Lightbulb className="w-5 h-5 text-amber-600 shrink-0 mt-0.5" />
@@ -298,10 +275,29 @@ function RewritePage({ exercises, instruction }: { exercises: RewriteExercise[];
         )}
 
         <div className="flex justify-end gap-3">
-          {!isAnswered ? (
-            <Button onClick={handleCheck} disabled={!userAnswer.trim()} size="lg">
-              Check Answer
+          {!showAnswer ? (
+            <Button onClick={handleShowAnswer} size="lg">
+              See Correct Answer
             </Button>
+          ) : !hasEvaluated ? (
+            <>
+              <p className="text-sm text-muted-foreground self-center mr-2">How did you do?</p>
+              <Button 
+                onClick={() => handleSelfEvaluate(false)} 
+                variant="outline"
+                size="lg"
+                className="border-red-300 text-red-600 hover:bg-red-50"
+              >
+                I got it wrong
+              </Button>
+              <Button 
+                onClick={() => handleSelfEvaluate(true)} 
+                size="lg"
+                className="bg-green-600 hover:bg-green-700 text-white"
+              >
+                I got it right
+              </Button>
+            </>
           ) : (
             <Button onClick={handleNext} size="lg">
               {currentIndex === exercises.length - 1 ? "Finish" : "Next"} <ArrowRight className="ml-2 h-4 w-4" />
