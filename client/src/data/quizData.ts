@@ -147,47 +147,49 @@ export function getRecommendation(answers: Record<number, boolean>): string {
   
   // Basic Logic Checks
   if (wrong(1) && right(2)) {
-    return "Te recomendamos practicar desde el principio- “Identificar objeto directo”";
+    return "We recommend that you start practicing from the beginning: “Identifying the direct object”.";
   }
   if (right(1) && wrong(2)) {
-    return "Sabes cómo sustituir el objeto directo, te recomendamos empezar a aprender desde “Identificar objeto Indirecto”";
+    return "Since you already know how to replace the direct object, we recommend starting with: “Identifying the indirect object”.";
   }
   
-  // Check stop condition 1 failure
+  // Check stop condition 1 failure (Q1 & Q2)
   if (wrong(1) || wrong(2)) {
-    // Fallback if they got both wrong or some other combination not covered exactly above but failed early
-    return "Te recomendamos repasar los fundamentos de objeto directo e indirecto.";
+    // General fallback for early failure
+    return "We recommend that you start practicing from the beginning: “Identifying the direct object”.";
   }
 
-  // Stop condition 2 checks
+  // Stop condition 2 checks (Q3 & Q4)
   if (right(1) && right(2) && right(4) && wrong(3)) {
-    return "Sabes cómo sustituir el objeto directo e indirecto, te recomendamos empezar a aprender desde “sustituir dos objetos en una sola oración”";
+    return "Since you already know how to replace both direct and indirect objects, we recommend starting with: ‘Replacing two objects in a single sentence.’";
   }
   if (right(1) && right(2) && right(3) && wrong(4)) {
-    return "Sabes cómo sustituir el objeto directo e indirecto, te recomendamos empezar a aprender desde “sustituir dos objetos en una sola oración 2”";
+    return "Since you already know how to replace direct and indirect objects, we recommend starting with: ‘Replacing two objects in a single sentence 2.’";
   }
   
   if (wrong(3) || wrong(4)) {
-     // Fallback for other failures in this block
-     return "Te recomendamos practicar la sustitución de dos objetos.";
+     // Fallback for Q3/Q4 failure
+     return "Since you already know how to replace both direct and indirect objects, we recommend starting with: ‘Replacing two objects in a single sentence.’";
   }
 
-  // Advanced checks (Q5+)
+  // Advanced checks (Q5+) - If 2 or more incorrect from Q5 onwards
   const wrongCountFrom5 = [5,6,7,8,9,10,11].filter(id => wrong(id)).length;
-
   if (wrongCountFrom5 >= 2) {
-    return "Parece que sabes cómo manejar los pronombres de objeto directo e indirecto, solamente te falta practicar su posición en distintos tiempos verbales, te recomiendo repasar “Usarlos en diferentes tiempos verbales”";
+    return "It seems you already know how to use direct and indirect object pronouns; you just need to practice their placement in different verb tenses. I recommend reviewing: ‘Using Them in Different Tenses.’";
   }
 
-  if (wrong(5)) return "Felicidades, parece que sabes cómo manejar los pronombres de objeto directo e indirecto, solamente de falta practicar su posición en oraciones en futuro próximo, te recomendamos repasar “Posición en futuro próximo”";
-  if (wrong(6)) return "Parece que sabes cómo manejar los pronombres de objeto directo e indirecto, solamente de falta practicar su posición en distintos tiempos verbales, te recomendamos empezar desde “Usarlo en diferentes tiempos verbales”";
-  if (wrong(7)) return "Felicidades, parece que sabes cómo manejar los pronombres de objeto directo e indirecto, solamente de falta practicar su posición en oraciones en Presente continuo, te recomendamos repasar “Presente continuo”";
-  if (wrong(8)) return "Felicidades, parece que sabes cómo manejar los pronombres de objeto directo e indirecto, solamente de falta practicar su posición en oraciones con infinitivo, te recomendamos repasar “Posición de objeto directo e indirecto con infinitivo”";
-  if (wrong(9)) return "Felicidades, parece que sabes cómo manejar los pronombres de objeto directo e indirecto, solamente de falta practicar su posición en oraciones en pretérito compuesto, te recomendamos repasar “Posición de objeto directo e indirecto en pretérito compuesto”";
+  if (wrong(5)) return "Congratulations! It seems you already know how to use direct and indirect object pronouns. You just need to practice their placement in sentences in the near future tense. We recommend reviewing: ‘Placement in the Near Future.’";
+  if (wrong(6)) return "It seems you already know how to use direct and indirect object pronouns; you just need to practice their placement in different verb tenses. We recommend starting with: ‘Using them in different tenses.’";
+  if (wrong(7)) return "Congratulations! It seems you already know how to use direct and indirect object pronouns; you just need to practice their placement in sentences in the present continuous tense. We recommend reviewing: ‘Present Continuous.’";
+  if (wrong(8)) return "Congratulations! It seems you already know how to use direct and indirect object pronouns; you just need to practice their placement in sentences with an infinitive. We recommend reviewing: ‘Direct and Indirect Object Placement with Infinitives.’";
+  if (wrong(9)) return "Congratulations! It seems you already know how to use direct and indirect object pronouns; you just need to practice their placement in sentences in the present perfect. We recommend reviewing: ‘Direct and Indirect Object Placement in the Present Perfect.’";
   
-  if (wrong(10) && wrong(11)) return "Felicidades, parece que sabes cómo manejar los pronombres de objeto directo e indirecto, solamente de falta practicar su posición en oraciones en imperativo positivo y negativo, te recomendamos repasar “Posición de objeto directo e indirecto en imperativo positivo” y “Posición de objeto directo e indirecto en imperativo negativo”";
-  if (wrong(10)) return "Felicidades, parece que sabes cómo manejar los pronombres de objeto directo e indirecto, solamente de falta practicar su posición en oraciones en imperativo positivo, te recomendamos repasar “Posición de objeto directo e indirecto en imperativo positivo”";
-  if (wrong(11)) return "Felicidades, parece que sabes cómo manejar los pronombres de objeto directo e indirecto, solamente de falta practicar su posición en oraciones en imperativo negativo, te recomendamos repasar “Posición de objeto directo e indirecto en imperativo negativo”";
+  // Q10 & Q11 Combined Check
+  if (wrong(10) && wrong(11)) return "Congratulations, it seems you know how to handle direct and indirect object pronouns, you just need to practice their position in positive and negative imperative sentences. We recommend you review: “Direct and indirect object position in positive imperative” and “Direct and indirect object position in negative imperative”";
+  
+  if (wrong(10)) return "Congratulations, it seems you know how to handle direct and indirect object pronouns, you just need to practice their position in positive imperative sentences. We recommend you review: “Direct and indirect object position in positive imperative”";
+  
+  if (wrong(11)) return "Congratulations, it seems you know how to handle direct and indirect object pronouns, you just need to practice their position in negative imperative sentences. We recommend you review: “Direct and indirect object position in negative imperative”";
 
-  return "¡Felicidades! Has completado el test perfectamente. ¡Eres un maestro de los objetos directos e indirectos!";
+  return "Congratulations! You have mastered Direct and Indirect Objects in Spanish!";
 }
