@@ -170,7 +170,14 @@ function RewritePage({ exercises, instruction, backPath }: { exercises: RewriteE
   const progress = ((currentIndex) / exercises.length) * 100;
 
   const normalizeAnswer = (str: string) => {
-    return str.toLowerCase().trim().replace(/[.,;:!?¿¡]/g, "").replace(/\s+/g, " ");
+    return str
+      .toLowerCase()
+      .trim()
+      .replace(/[.,;:!?¿¡]/g, "")
+      .replace(/\s+/g, " ")
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .replace(/ñ/g, "n");
   };
 
   const checkAnswer = () => {
