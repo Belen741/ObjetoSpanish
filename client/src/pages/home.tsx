@@ -23,12 +23,12 @@ export default function Home() {
 
       <div className="max-w-4xl w-full z-10">
         <header className="text-center mb-16">
-          <h1 className="text-5xl md:text-6xl font-extrabold mb-4 text-foreground tracking-tight">
-            Spanish Objects <span className="text-primary">Mastery</span>
+          <h1 className="text-4xl md:text-5xl font-extrabold mb-4 text-foreground tracking-tight">
+            Direct & Indirect Object Pronoun <span className="text-primary">Exercises in Spanish</span>
           </h1>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Understand the logic behind Direct and Indirect Object Pronouns.
-          </p>
+          <h2 className="text-xl text-muted-foreground max-w-2xl mx-auto font-normal">
+            Practice Spanish object pronouns with clear, practical examples and immediate feedback.
+          </h2>
         </header>
 
         <div className="grid md:grid-cols-2 gap-8 max-w-3xl mx-auto">
