@@ -15,6 +15,13 @@ export type RewriteExercise = {
   explanation: string;
 };
 
+export type FillInStoryExercise = {
+  id: number;
+  title: string;
+  segments: { text: string; isBlank: boolean; correctAnswer?: string }[];
+  dropdownOptions: string[];
+};
+
 // Page 1: Select the correct pronoun
 export const directObjectPage1: MultipleChoiceExercise[] = [
   {
@@ -336,5 +343,73 @@ export const directObjectPage3: MultipleChoiceExercise[] = [
     ],
     correctAnswer: "c",
     explanation: "La película is feminine singular, so we use \"la.\" The pronoun agrees in gender and number with the replaced noun.",
+  },
+];
+
+// Page 4: Fill in the blanks with dropdown
+export const directObjectPage4: FillInStoryExercise[] = [
+  {
+    id: 1,
+    title: "La rutina diaria de María",
+    segments: [
+      { text: "Un día María ve la televisión muy temprano. Ella ", isBlank: false },
+      { text: "", isBlank: true, correctAnswer: "la" },
+      { text: " ve mientras desayuna. Después prepara el desayuno para ella misma y ", isBlank: false },
+      { text: "", isBlank: true, correctAnswer: "lo" },
+      { text: " come con calma. Más tarde limpia la casa y ", isBlank: false },
+      { text: "", isBlank: true, correctAnswer: "la" },
+      { text: " deja muy ordenada. Al mediodía llama a su amiga y ven una película juntas; ", isBlank: false },
+      { text: "", isBlank: true, correctAnswer: "la" },
+      { text: " ven hasta el final. Por la tarde María revisa los correos del trabajo y ", isBlank: false },
+      { text: "", isBlank: true, correctAnswer: "los" },
+      { text: " responde con atención. Antes de dormir lee un libro interesante y ", isBlank: false },
+      { text: "", isBlank: true, correctAnswer: "lo" },
+      { text: " termina en la noche.", isBlank: false },
+    ],
+    dropdownOptions: ["me", "te", "lo", "la", "las", "los", "nos"],
+  },
+  {
+    id: 2,
+    title: "Una reunión en casa de Laura",
+    segments: [
+      { text: "Ayer mis amigos y yo nos reunimos en casa de Laura. Primero Juan me llamó por teléfono y ", isBlank: false },
+      { text: "", isBlank: true, correctAnswer: "me" },
+      { text: " invitó a la reunión. Luego yo te vi en la calle y ", isBlank: false },
+      { text: "", isBlank: true, correctAnswer: "te" },
+      { text: " saludé con una sonrisa. Cuando llegamos a la casa, Laura preparó el café y ", isBlank: false },
+      { text: "", isBlank: true, correctAnswer: "lo" },
+      { text: " sirvió caliente. Después puso la música y ", isBlank: false },
+      { text: "", isBlank: true, correctAnswer: "la" },
+      { text: " subió un poco el volumen. Más tarde sacó los juegos de mesa y ", isBlank: false },
+      { text: "", isBlank: true, correctAnswer: "los" },
+      { text: " colocó sobre la mesa. También preparó las botanas y ", isBlank: false },
+      { text: "", isBlank: true, correctAnswer: "las" },
+      { text: " dejó listas para todos. Al final, esa tarde tan divertida ", isBlank: false },
+      { text: "", isBlank: true, correctAnswer: "la" },
+      { text: " recordaremos siempre.", isBlank: false },
+    ],
+    dropdownOptions: ["me", "te", "lo", "la", "las", "los", "nos"],
+  },
+  {
+    id: 3,
+    title: "Un domingo diferente",
+    segments: [
+      { text: "El domingo por la mañana preparamos las cosas para salir temprano y ", isBlank: false },
+      { text: "", isBlank: true, correctAnswer: "las" },
+      { text: " dejamos listas desde la noche anterior. Antes de irnos, mi hermano me vio apurada y ", isBlank: false },
+      { text: "", isBlank: true, correctAnswer: "me" },
+      { text: " ayudó a cerrar la casa. En el camino yo te encontré en el mercado y ", isBlank: false },
+      { text: "", isBlank: true, correctAnswer: "te" },
+      { text: " saludé rápidamente. Más tarde compramos los regalos para la fiesta y ", isBlank: false },
+      { text: "", isBlank: true, correctAnswer: "los" },
+      { text: " envolvimos con cuidado. Al llegar al parque vimos un espectáculo interesante y ", isBlank: false },
+      { text: "", isBlank: true, correctAnswer: "lo" },
+      { text: " disfrutamos mucho. Después tomamos la foto del grupo y ", isBlank: false },
+      { text: "", isBlank: true, correctAnswer: "la" },
+      { text: " subimos a redes sociales. Al final del día, todos ", isBlank: false },
+      { text: "", isBlank: true, correctAnswer: "nos" },
+      { text: " despedimos con alegría.", isBlank: false },
+    ],
+    dropdownOptions: ["me", "te", "lo", "la", "las", "los", "nos"],
   },
 ];
