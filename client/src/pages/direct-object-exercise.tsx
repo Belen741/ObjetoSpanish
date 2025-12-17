@@ -450,11 +450,12 @@ function FillInStoryPage({
             <div className="flex items-start gap-3">
               <Lightbulb className="w-5 h-5 text-amber-600 shrink-0 mt-0.5" />
               <div className="text-sm text-foreground/80">
-                <p className="font-medium mb-2">Correct answers:</p>
-                <p>{blanks.map((_, idx) => {
-                  const seg = current.segments.filter(s => s.isBlank)[idx];
-                  return seg?.correctAnswer;
-                }).join(", ")}</p>
+                <p className="font-medium mb-2">Explanations:</p>
+                <ul className="space-y-1">
+                  {current.segments.filter(s => s.isBlank).map((seg, idx) => (
+                    <li key={idx}>{seg.explanation}</li>
+                  ))}
+                </ul>
               </div>
             </div>
           </div>
