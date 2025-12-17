@@ -1,5 +1,5 @@
 import { Link } from "wouter";
-import { BookOpen, BrainCircuit, GraduationCap } from "lucide-react";
+import { BookOpen, BrainCircuit, GraduationCap, Mail } from "lucide-react";
 
 export default function Home() {
   return (
@@ -87,6 +87,21 @@ export default function Home() {
               </div>
             </div>
           </Link>
+        </div>
+
+        {/* Comments and Suggestions Section */}
+        <div className="mt-16 text-center">
+          <h3 className="text-lg font-semibold text-foreground mb-2">
+            Comments and Suggestions
+          </h3>
+          <a 
+            href="mailto:hablandoconbelen@gmail.com"
+            className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors"
+            data-testid="link-email-contact"
+          >
+            <Mail className="w-4 h-4" />
+            hablandoconbelen@gmail.com
+          </a>
         </div>
       </div>
     </div>
