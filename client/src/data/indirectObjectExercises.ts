@@ -15,6 +15,13 @@ export type RewriteExercise = {
   explanation: string;
 };
 
+export type FillInStoryExercise = {
+  id: number;
+  title: string;
+  segments: { text: string; isBlank: boolean; correctAnswer?: string; explanation?: string }[];
+  dropdownOptions: string[];
+};
+
 // Page 1: Select the correct pronoun
 export const indirectObjectPage1: MultipleChoiceExercise[] = [
   {
@@ -337,5 +344,69 @@ export const indirectObjectPage3: MultipleChoiceExercise[] = [
     ],
     correctAnswer: "b",
     explanation: "\"A Juan\" → singular indirect object → \"le.\"",
+  },
+];
+
+// Page 4: Fill in the blanks with dropdown
+export const indirectObjectPage4: FillInStoryExercise[] = [
+  {
+    id: 1,
+    title: "Organizando algo especial",
+    segments: [
+      { text: "Esta semana organizamos una sorpresa en la oficina. Primero Ana me preguntó algo y ", isBlank: false },
+      { text: "", isBlank: true, correctAnswer: "me", explanation: "me – Yo (Ana asked ME)" },
+      { text: " explicó el plan con detalle. Después yo te mandé un mensaje y ", isBlank: false },
+      { text: "", isBlank: true, correctAnswer: "te", explanation: "te – Tú (I sent YOU a message)" },
+      { text: " conté la idea. Más tarde Juan habló con Laura y ", isBlank: false },
+      { text: "", isBlank: true, correctAnswer: "le", explanation: "le – Laura" },
+      { text: " pidió ayuda con la decoración. También llamó a sus compañeros y ", isBlank: false },
+      { text: "", isBlank: true, correctAnswer: "les", explanation: "les – Compañeros" },
+      { text: " explicó los pasos del evento. El jefe vio el proyecto terminado y ", isBlank: false },
+      { text: "", isBlank: true, correctAnswer: "nos", explanation: "nos – A mí y a Todos (nosotros)" },
+      { text: " dio las gracias a mí y a todos. Al final, a mí y al equipo preparó el festejo y ", isBlank: false },
+      { text: "", isBlank: true, correctAnswer: "nos", explanation: "nos – A mí y al equipo (nosotros)" },
+      { text: " salió mejor de lo que esperábamos.", isBlank: false },
+    ],
+    dropdownOptions: ["me", "te", "le", "les", "nos"],
+  },
+  {
+    id: 2,
+    title: "Mensajes y favores",
+    segments: [
+      { text: "Durante la mañana pasaron muchas cosas. A los clientes nuevos el gerente ", isBlank: false },
+      { text: "", isBlank: true, correctAnswer: "les", explanation: "les – clientes nuevos" },
+      { text: " envió la información por correo. Más tarde yo ", isBlank: false },
+      { text: "", isBlank: true, correctAnswer: "te", explanation: "te – a ti" },
+      { text: " conté el plan con calma a ti cuando nos vimos. Al mediodía mis compañeros ", isBlank: false },
+      { text: "", isBlank: true, correctAnswer: "me", explanation: "me – My colleagues asked ME for a favor" },
+      { text: " pidieron un favor inesperado, no lo podía creer. Entonces por la tarde mi hermana ", isBlank: false },
+      { text: "", isBlank: true, correctAnswer: "me", explanation: "me – My sister lent ME her computer" },
+      { text: " prestó su computadora por unas horas. Antes de salir, el jefe ", isBlank: false },
+      { text: "", isBlank: true, correctAnswer: "nos", explanation: "nos – Al equipo y a mí (nosotros)" },
+      { text: " dio las instrucciones finales al equipo y a mí. Al final del día, todo ese movimiento ", isBlank: false },
+      { text: "", isBlank: true, correctAnswer: "nos", explanation: "nos – It gave US a new experience (nosotros)" },
+      { text: " dejó una buena experiencia.", isBlank: false },
+    ],
+    dropdownOptions: ["me", "te", "le", "les", "nos"],
+  },
+  {
+    id: 3,
+    title: "Una sorpresa en la oficina - Conversación",
+    segments: [
+      { text: "Ana: —¿Te acuerdas de la sorpresa que organizamos esta semana?\n—Sí, claro. Primero yo te pregunté algo y tú ", isBlank: false },
+      { text: "", isBlank: true, correctAnswer: "me", explanation: "me – you explained it to ME" },
+      { text: " explicaste el plan con detalle.\n\nTú: —Exacto. Después yo te mandé un mensaje y ", isBlank: false },
+      { text: "", isBlank: true, correctAnswer: "te", explanation: "te – I told YOU the idea" },
+      { text: " conté la idea completa.\n\nAna: —¿Y Juan también participó?\n—Sí. Juan habló con Laura y ", isBlank: false },
+      { text: "", isBlank: true, correctAnswer: "le", explanation: "le – Laura" },
+      { text: " pidió ayuda con la decoración.\n\nTú: —Además, llamó a los compañeros y ", isBlank: false },
+      { text: "", isBlank: true, correctAnswer: "les", explanation: "les – Los compañeros" },
+      { text: " explicó todos los pasos del evento.\n\nAna: —¿Qué dijo el jefe cuando vio el proyecto terminado?\n—Nos ", isBlank: false },
+      { text: "", isBlank: true, correctAnswer: "nos", explanation: "nos – Todos (nosotros)" },
+      { text: " dio las gracias a todos.\n\nTú: —¿Y al final qué pasó con el festejo?\n—A mí y al equipo nos tocó prepararlo y ", isBlank: false },
+      { text: "", isBlank: true, correctAnswer: "nos", explanation: "nos – Nosotros (It turned out better for US than we expected)" },
+      { text: " salió mejor de lo que esperábamos.", isBlank: false },
+    ],
+    dropdownOptions: ["me", "te", "le", "les", "nos"],
   },
 ];
