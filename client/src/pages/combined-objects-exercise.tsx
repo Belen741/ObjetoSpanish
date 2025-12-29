@@ -7,11 +7,13 @@ import {
   combinedObjectsPage1, 
   combinedObjectsPage2, 
   combinedObjectsPage3,
+  combinedObjectsPage4,
   type MultipleChoiceExercise,
-  type RewriteExercise 
+  type RewriteExercise,
+  type FillInStoryExercise
 } from "@/data/combinedObjectsExercises";
 
-type PageType = "1" | "2" | "3";
+type PageType = "1" | "2" | "3" | "4";
 
 function MultipleChoicePage({ 
   exercises, 
@@ -311,11 +313,188 @@ function RewritePage({ exercises, instruction, backPath }: { exercises: RewriteE
   );
 }
 
+function FillInStoryPage({ exercises, backPath }: { exercises: FillInStoryExercise[]; backPath: string }) {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [answers, setAnswers] = useState<Record<string, string>>({});
+  const [isChecked, setIsChecked] = useState(false);
+  const [score, setScore] = useState(0);
+  const [isFinished, setIsFinished] = useState(false);
+
+  const current = exercises[currentIndex];
+  const blanks = current.segments.filter(s => s.isBlank);
+  const progress = ((currentIndex) / exercises.length) * 100;
+
+  const handleSelect = (blankIndex: number, dropdownIndex: number, value: string) => {
+    const key = `${blankIndex}-${dropdownIndex}`;
+    setAnswers(prev => ({ ...prev, [key]: value }));
+  };
+
+  const handleCheck = () => {
+    setIsChecked(true);
+    let correctCount = 0;
+    blanks.forEach((segment, blankIdx) => {
+      const expectedAnswers = segment.correctAnswers || [];
+      let allCorrect = true;
+      expectedAnswers.forEach((expected, dropdownIdx) => {
+        const key = `${blankIdx}-${dropdownIdx}`;
+        if (answers[key] !== expected) {
+          allCorrect = false;
+        }
+      });
+      if (allCorrect) correctCount++;
+    });
+    setScore(s => s + correctCount);
+  };
+
+  const handleNext = () => {
+    if (currentIndex < exercises.length - 1) {
+      setCurrentIndex(i => i + 1);
+      setAnswers({});
+      setIsChecked(false);
+    } else {
+      setIsFinished(true);
+    }
+  };
+
+  const handleRestart = () => {
+    setCurrentIndex(0);
+    setAnswers({});
+    setIsChecked(false);
+    setScore(0);
+    setIsFinished(false);
+  };
+
+  const totalBlanks = exercises.reduce((acc, ex) => acc + ex.segments.filter(s => s.isBlank).length, 0);
+  
+  const allAnswered = blanks.every((segment, blankIdx) => {
+    const expectedCount = segment.correctAnswers?.length || 0;
+    for (let i = 0; i < expectedCount; i++) {
+      if (!answers[`${blankIdx}-${i}`]) return false;
+    }
+    return true;
+  });
+
+  if (isFinished) {
+    return (
+      <div className="text-center py-12">
+        <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+          <CheckCircle className="w-10 h-10 text-green-600" />
+        </div>
+        <h2 className="text-3xl font-bold mb-2">Page 4 Complete!</h2>
+        <p className="text-xl text-muted-foreground mb-8">
+          You scored {score} out of {totalBlanks} blanks
+        </p>
+        <div className="flex gap-4 justify-center">
+          <Button variant="outline" onClick={handleRestart}>
+            <RotateCcw className="mr-2 h-4 w-4" /> Try Again
+          </Button>
+          <Link href={backPath}>
+            <Button>Back to Pages</Button>
+          </Link>
+        </div>
+      </div>
+    );
+  }
+
+  let blankCounter = 0;
+
+  return (
+    <div>
+      <div className="flex items-center justify-between mb-4">
+        <span className="text-sm font-medium text-muted-foreground">
+          Story {currentIndex + 1} of {exercises.length}
+        </span>
+        <span className="text-sm font-medium text-primary">
+          Score: {score} blanks
+        </span>
+      </div>
+      <Progress value={progress} className="h-2 mb-6" />
+
+      <div className="bg-secondary/5 border border-secondary/20 rounded-xl p-4 mb-6">
+        <p className="text-secondary font-medium">Fill in each blank with the correct pronoun(s). Some blanks need two pronouns.</p>
+      </div>
+
+      <div className="bg-white rounded-2xl p-8 border border-border shadow-sm">
+        <h3 className="text-xl font-bold text-foreground mb-4">{current.title}</h3>
+        
+        <div className="text-lg leading-relaxed mb-6 whitespace-pre-line">
+          {current.segments.map((segment, idx) => {
+            if (!segment.isBlank) {
+              return <span key={idx}>{segment.text}</span>;
+            }
+            const currentBlankIndex = blankCounter++;
+            const expectedAnswers = segment.correctAnswers || [];
+            
+            return (
+              <span key={idx} className="inline-flex gap-1">
+                {expectedAnswers.map((expected, dropdownIdx) => {
+                  const key = `${currentBlankIndex}-${dropdownIdx}`;
+                  const isCorrect = isChecked && answers[key] === expected;
+                  const isWrong = isChecked && answers[key] !== expected;
+                  
+                  return (
+                    <select
+                      key={dropdownIdx}
+                      value={answers[key] || ""}
+                      onChange={(e) => handleSelect(currentBlankIndex, dropdownIdx, e.target.value)}
+                      disabled={isChecked}
+                      className={`px-2 py-1 rounded-lg border-2 font-medium text-base transition-colors ${
+                        isCorrect ? 'border-green-500 bg-green-50' :
+                        isWrong ? 'border-red-500 bg-red-50' :
+                        answers[key] ? 'border-primary bg-primary/5' : 'border-border'
+                      }`}
+                      data-testid={`dropdown-blank-${currentBlankIndex}-${dropdownIdx}`}
+                    >
+                      <option value="">___</option>
+                      {current.dropdownOptions.map(opt => (
+                        <option key={opt} value={opt}>{opt}</option>
+                      ))}
+                    </select>
+                  );
+                })}
+              </span>
+            );
+          })}
+        </div>
+
+        {isChecked && (
+          <div className="p-4 rounded-xl bg-amber-50 border border-amber-200 mb-6">
+            <div className="flex items-start gap-3">
+              <Lightbulb className="w-5 h-5 text-amber-600 shrink-0 mt-0.5" />
+              <div className="text-sm text-foreground/80">
+                <p className="font-medium mb-2">Explanations:</p>
+                <ul className="space-y-1">
+                  {current.segments.filter(s => s.isBlank).map((seg, idx) => (
+                    <li key={idx}>{seg.explanation}</li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+        )}
+
+        <div className="flex justify-end gap-3">
+          {!isChecked ? (
+            <Button onClick={handleCheck} disabled={!allAnswered} size="lg">
+              Check Answers
+            </Button>
+          ) : (
+            <Button onClick={handleNext} size="lg">
+              {currentIndex === exercises.length - 1 ? "Finish" : "Next Story"} <ArrowRight className="ml-2 h-4 w-4" />
+            </Button>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function PageSelector({ onSelect }: { onSelect: (page: PageType) => void }) {
   const pages = [
     { id: "1" as PageType, title: "Page 1", description: "Select the correct pronouns" },
     { id: "2" as PageType, title: "Page 2", description: "Rewrite the sentence" },
     { id: "3" as PageType, title: "Page 3", description: "Choose the correct answer" },
+    { id: "4" as PageType, title: "Page 4", description: "Fill in the story" },
   ];
 
   return (
@@ -393,11 +572,16 @@ export default function CombinedObjectsExercise() {
             instruction="Rewrite each sentence by replacing the direct and indirect objects with the correct pronouns."
             backPath={backPath}
           />
-        ) : (
+        ) : selectedPage === "3" ? (
           <MultipleChoicePage 
             exercises={combinedObjectsPage3} 
             pageNum="3" 
             instruction="Choose the correct answer that replaces the direct and indirect objects with the right pronouns."
+            backPath={backPath}
+          />
+        ) : (
+          <FillInStoryPage 
+            exercises={combinedObjectsPage4} 
             backPath={backPath}
           />
         )}

@@ -15,6 +15,13 @@ export type RewriteExercise = {
   explanation: string;
 };
 
+export type FillInStoryExercise = {
+  id: number;
+  title: string;
+  segments: { text: string; isBlank: boolean; correctAnswers?: string[]; explanation?: string }[];
+  dropdownOptions: string[];
+};
+
 // Page 1: Select the correct pronouns
 export const combinedObjectsPage1: MultipleChoiceExercise[] = [
   {
@@ -334,5 +341,77 @@ export const combinedObjectsPage3: MultipleChoiceExercise[] = [
     ],
     correctAnswer: "a",
     explanation: "Direct object: la respuesta → la. Indirect object: a ti → te. Correct pair of pronouns: te la.",
+  },
+];
+
+// Page 4: Fill in the blanks with dropdown
+export const combinedObjectsPage4: FillInStoryExercise[] = [
+  {
+    id: 1,
+    title: "Un evento cultural en la escuela",
+    segments: [
+      { text: "El lunes llegamos temprano para organizar el evento cultural de la escuela. Primero María imprimió los carteles y ", isBlank: false },
+      { text: "", isBlank: true, correctAnswers: ["nos", "los"], explanation: "nos los – Nos = to us (indirect object) + los = the posters (direct object). María gave the posters to us → she gave us them." },
+      { text: " repartió a nosotros antes de la reunión. Después yo preparé las invitaciones y ", isBlank: false },
+      { text: "", isBlank: true, correctAnswers: ["te", "las"], explanation: "te las – Te = to you + las = the invitations. I showed the invitations to you → I showed you them." },
+      { text: " mostré a ti para recibir tu opinión. Más tarde el profesor ordenó los instrumentos musicales y ", isBlank: false },
+      { text: "", isBlank: true, correctAnswers: ["los"], explanation: "los – Los = the instruments (direct object). No double pronoun possible without \"se\". He placed them on the stage." },
+      { text: " colocó en el escenario con ayuda del equipo. En el descanso tú compraste los bocadillos y ", isBlank: false },
+      { text: "", isBlank: true, correctAnswers: ["me", "los"], explanation: "me los – Me = to me + los = the snacks. You gave the snacks to me → you gave me them." },
+      { text: " diste a mí en una caja pequeña. Por la tarde los alumnos decoraron el salón y la directora ", isBlank: false },
+      { text: "", isBlank: true, correctAnswers: ["les"], explanation: "les – Les = to them (indirect object). She took photos of them." },
+      { text: " tomó fotos. Al final yo armé la lista de actividades y ", isBlank: false },
+      { text: "", isBlank: true, correctAnswers: ["te", "la"], explanation: "te la – Te = to you + la = the list. I sent the list to you → I sent you it." },
+      { text: " envié por mensaje.", isBlank: false },
+    ],
+    dropdownOptions: ["me", "te", "le", "la", "lo", "les", "las", "los", "nos"],
+  },
+  {
+    id: 2,
+    title: "Conversación: Libros y materiales",
+    segments: [
+      { text: "Ana: —¿Viste los libros nuevos del curso?\nCarlos: —Sí, ", isBlank: false },
+      { text: "", isBlank: true, correctAnswers: ["me", "los"], explanation: "me los – Me = to me (IO) + los = the books (DO). Laura showed the books to me → she showed me them." },
+      { text: " mostró Laura ayer.\n\nAna: —Genial. Yo preparé las tarjetas. Más tarde ", isBlank: false },
+      { text: "", isBlank: true, correctAnswers: ["te", "las"], explanation: "te las – Te = to you + las = the cards. I will give the cards to you → I'll give you them." },
+      { text: " doy para revisarlas.\nCarlos: —Perfecto. Ayer ", isBlank: false },
+      { text: "", isBlank: true, correctAnswers: ["nos", "los"], explanation: "nos los – Nos = to us + los = the certificates. The director gave the certificates to us → gave us them." },
+      { text: " dio el director, los certificados también.\nAna: —Ah, qué bueno. Y la presentación, ¿quién ", isBlank: false },
+      { text: "", isBlank: true, correctAnswers: ["la"], explanation: "la – \"La presentación\" = direct object. Who shared it with you all?" },
+      { text: " compartió a ustedes?\nCarlos: —Ana, la compañera del equipo ", isBlank: false },
+      { text: "", isBlank: true, correctAnswers: ["nos"], explanation: "nos – To us = nos. She shared the presentation to us by email." },
+      { text: " la compartió por correo.\nAna: —Excelente. Yo ya guardé los materiales del salón, ", isBlank: false },
+      { text: "", isBlank: true, correctAnswers: ["los"], explanation: "los – \"Los materiales\" = direct object. I already kept them in the classroom." },
+      { text: " dejé en su lugar.", isBlank: false },
+    ],
+    dropdownOptions: ["me", "te", "le", "la", "lo", "les", "las", "los", "nos"],
+  },
+  {
+    id: 3,
+    title: "Conversación: Preparando el taller",
+    segments: [
+      { text: "Yo: —Oye, ayer preparé el material del taller. ¿Recuerdas que ", isBlank: false },
+      { text: "", isBlank: true, correctAnswers: ["te", "lo"], explanation: "te lo – Te = to you (IO) + lo = the material (DO). I taught the material to you → I taught you it." },
+      { text: " enseñé en la mañana?\n\nTú: —Sí, claro, ", isBlank: false },
+      { text: "", isBlank: true, correctAnswers: ["me", "lo"], explanation: "me lo – Me = to me + lo = the material/info. You explained it to me → you explained me it." },
+      { text: " explicaste muy bien. Por cierto, traje las hojas impresas. ¿Quieres que ", isBlank: false },
+      { text: "", isBlank: true, correctAnswers: ["te", "las"], explanation: "te las – Te = to you + las = the printed sheets. Do you want me to give them to you?" },
+      { text: " dé en este momento?\n\nYo: —Sí, por favor. También hice los ejemplos y ", isBlank: false },
+      { text: "", isBlank: true, correctAnswers: ["te", "los"], explanation: "te los – Te = to you + los = the examples. I will show them to you later." },
+      { text: " mostraré después de la comida.\n\nTú: —Perfecto. Yo organicé los libros y ", isBlank: false },
+      { text: "", isBlank: true, correctAnswers: ["los"], explanation: "los – Los = the books (direct object). I placed them on the table." },
+      { text: " puse en la mesa de trabajo. Ah, y mañana ", isBlank: false },
+      { text: "", isBlank: true, correctAnswers: ["te", "los"], explanation: "te los – Te = to you + los = the audios. I will send them to you tomorrow." },
+      { text: " enviaré por correo, los audios del ejercicio final.\n\nYo: —Genial. Hoy grabé los diálogos y ", isBlank: false },
+      { text: "", isBlank: true, correctAnswers: ["te", "los"], explanation: "te los – Te = to you + los = the dialogues. I will share them with you this afternoon." },
+      { text: " compartiré a ti por la tarde para que los revises.\n\nTú: —Súper. Ayer la coordinadora revisó el plan y ", isBlank: false },
+      { text: "", isBlank: true, correctAnswers: ["nos", "lo"], explanation: "nos lo – Nos = to us + lo = the plan. She gave it to us with corrections." },
+      { text: " entregó a nosotros con algunas correcciones. ¿Quieres que ", isBlank: false },
+      { text: "", isBlank: true, correctAnswers: ["te"], explanation: "te – Te = to you (IO). DO is missing in the question (implicit: the document). Do you want me to show you (the document)?" },
+      { text: " muestre el documento nuevo ahora?\n\nYo: —Sí, muéstralo. De hecho, ", isBlank: false },
+      { text: "", isBlank: true, correctAnswers: ["lo"], explanation: "lo – Lo = the document (DO). I saved it in my folder." },
+      { text: " guardé en mi carpeta para tenerlo a la mano.", isBlank: false },
+    ],
+    dropdownOptions: ["me", "te", "le", "la", "lo", "les", "las", "los", "nos"],
   },
 ];
