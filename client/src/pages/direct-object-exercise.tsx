@@ -312,9 +312,11 @@ function RewritePage({ exercises, instruction }: { exercises: RewriteExercise[];
 }
 
 function FillInStoryPage({ 
-  exercises 
+  exercises,
+  onBack
 }: { 
   exercises: FillInStoryExercise[];
+  onBack: () => void;
 }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [answers, setAnswers] = useState<{ [key: number]: string }>({});
@@ -372,7 +374,7 @@ function FillInStoryPage({
         <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
           <CheckCircle className="w-10 h-10 text-green-600" />
         </div>
-        <h2 className="text-3xl font-bold mb-2">Page 4 Complete!</h2>
+        <h2 className="text-3xl font-bold mb-2">Complete!</h2>
         <p className="text-xl text-muted-foreground mb-8">
           You got {score} out of {totalBlanks} blanks correct
         </p>
@@ -380,9 +382,7 @@ function FillInStoryPage({
           <Button variant="outline" onClick={handleRestart}>
             <RotateCcw className="mr-2 h-4 w-4" /> Try Again
           </Button>
-          <Link href="/practice/exercises/direct-object">
-            <Button>Back to Pages</Button>
-          </Link>
+          <Button onClick={onBack}>Back to Pages</Button>
         </div>
       </div>
     );
@@ -563,7 +563,7 @@ export default function DirectObjectExercise() {
             instruction="Choose the correct answer that replaces the direct object with the right pronoun."
           />
         ) : (
-          <FillInStoryPage exercises={directObjectPage4} />
+          <FillInStoryPage exercises={directObjectPage4} onBack={handleBack} />
         )}
       </div>
     </div>

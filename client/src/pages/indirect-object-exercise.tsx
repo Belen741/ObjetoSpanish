@@ -313,7 +313,7 @@ function RewritePage({ exercises, instruction, backPath }: { exercises: RewriteE
   );
 }
 
-function FillInStoryPage({ exercises, backPath }: { exercises: FillInStoryExercise[]; backPath: string }) {
+function FillInStoryPage({ exercises, backPath, onBack }: { exercises: FillInStoryExercise[]; backPath: string; onBack: () => void }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [answers, setAnswers] = useState<Record<number, string>>({});
   const [isChecked, setIsChecked] = useState(false);
@@ -366,7 +366,7 @@ function FillInStoryPage({ exercises, backPath }: { exercises: FillInStoryExerci
         <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
           <CheckCircle className="w-10 h-10 text-green-600" />
         </div>
-        <h2 className="text-3xl font-bold mb-2">Page 4 Complete!</h2>
+        <h2 className="text-3xl font-bold mb-2">Complete!</h2>
         <p className="text-xl text-muted-foreground mb-8">
           You scored {score} out of {totalBlanks} blanks
         </p>
@@ -374,9 +374,7 @@ function FillInStoryPage({ exercises, backPath }: { exercises: FillInStoryExerci
           <Button variant="outline" onClick={handleRestart}>
             <RotateCcw className="mr-2 h-4 w-4" /> Try Again
           </Button>
-          <Link href={backPath}>
-            <Button>Back to Pages</Button>
-          </Link>
+          <Button onClick={onBack}>Back to Pages</Button>
         </div>
       </div>
     );
@@ -560,6 +558,7 @@ export default function IndirectObjectExercise() {
           <FillInStoryPage 
             exercises={indirectObjectPage4} 
             backPath={backPath}
+            onBack={handleBack}
           />
         )}
       </div>
