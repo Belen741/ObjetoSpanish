@@ -8,12 +8,13 @@ import {
   combinedObjectsPage2, 
   combinedObjectsPage3,
   combinedObjectsPage4,
+  combinedObjectsPage5,
   type MultipleChoiceExercise,
   type RewriteExercise,
   type FillInStoryExercise
 } from "@/data/combinedObjectsExercises";
 
-type PageType = "1" | "2" | "3" | "4";
+type PageType = "1" | "2" | "3" | "4" | "5";
 
 function MultipleChoicePage({ 
   exercises, 
@@ -494,7 +495,8 @@ function PageSelector({ onSelect }: { onSelect: (page: PageType) => void }) {
     { id: "1" as PageType, title: "Page 1", description: "Select the correct pronouns" },
     { id: "2" as PageType, title: "Page 2", description: "Rewrite the sentence" },
     { id: "3" as PageType, title: "Page 3", description: "Choose the correct answer" },
-    { id: "4" as PageType, title: "Page 4", description: "Fill in the story" },
+    { id: "4" as PageType, title: "Page 4", description: "Fill in the story (me, te, nos)" },
+    { id: "5" as PageType, title: "Page 5", description: "Fill in the story (se + lo/la/los/las)" },
   ];
 
   return (
@@ -579,9 +581,14 @@ export default function CombinedObjectsExercise() {
             instruction="Choose the correct answer that replaces the direct and indirect objects with the right pronouns."
             backPath={backPath}
           />
-        ) : (
+        ) : selectedPage === "4" ? (
           <FillInStoryPage 
             exercises={combinedObjectsPage4} 
+            backPath={backPath}
+          />
+        ) : (
+          <FillInStoryPage 
+            exercises={combinedObjectsPage5} 
             backPath={backPath}
           />
         )}

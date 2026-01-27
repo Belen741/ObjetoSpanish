@@ -415,3 +415,59 @@ export const combinedObjectsPage4: FillInStoryExercise[] = [
     dropdownOptions: ["me", "te", "le", "la", "lo", "les", "las", "los", "nos"],
   },
 ];
+
+// Page 5: Fill in the blanks with "se" rule (le/les + lo/la/los/las → se + lo/la/los/las)
+export const combinedObjectsPage5: FillInStoryExercise[] = [
+  {
+    id: 1,
+    title: "La reunión del proyecto final",
+    segments: [
+      { text: "El viernes organizamos la reunión del proyecto final. Primero el coordinador revisó los documentos y ", isBlank: false },
+      { text: "", isBlank: true, correctAnswers: ["se", "los"], explanation: "se los – Se = a los profesores (IO) + los = los documentos (DO). He sent the documents to the teachers." },
+      { text: " envió a los profesores por correo. Después yo preparé las copias y ", isBlank: false },
+      { text: "", isBlank: true, correctAnswers: ["se", "las"], explanation: "se las – Se = a la directora (IO) + las = las copias (DO). I gave the copies to the director." },
+      { text: " di a la directora para su firma. Más tarde tú explicaste las instrucciones y ", isBlank: false },
+      { text: "", isBlank: true, correctAnswers: ["se", "las"], explanation: "se las – Se = a los alumnos (IO) + las = las instrucciones (DO). You repeated the instructions to the students." },
+      { text: " repetiste a los alumnos con paciencia. Durante la pausa ordenamos los materiales y ", isBlank: false },
+      { text: "", isBlank: true, correctAnswers: ["los"], explanation: "los – Solo objeto directo (los materiales). We put them in the cabinet." },
+      { text: " guardamos en el armario. Al final del día el equipo terminó el informe y ", isBlank: false },
+      { text: "", isBlank: true, correctAnswers: ["se", "lo"], explanation: "se lo – Se = a la administración (IO) + lo = el informe (DO). The team delivered the report to the administration." },
+      { text: " entregó a la administración.", isBlank: false },
+    ],
+    dropdownOptions: ["me", "te", "se", "le", "la", "lo", "les", "las", "los", "nos"],
+  },
+  {
+    id: 2,
+    title: "Conversación: Correos y credenciales",
+    segments: [
+      { text: "Laura: —¿Ya enviaste los correos importantes?\n\nPedro: —Sí, ", isBlank: false },
+      { text: "", isBlank: true, correctAnswers: ["se", "los"], explanation: "se los – Se = al equipo (IO) + los = los correos (DO). I sent them the emails." },
+      { text: " mandé ayer al equipo.\n\nLaura: —Perfecto. Yo preparé las credenciales y ahora ", isBlank: false },
+      { text: "", isBlank: true, correctAnswers: ["se", "las"], explanation: "se las – Se = a los invitados (IO) + las = las credenciales (DO). I'm going to give the credentials to the guests." },
+      { text: " voy a dar a los invitados.\n\nPedro: —Gracias. Ayer el director revisó el contrato y ", isBlank: false },
+      { text: "", isBlank: true, correctAnswers: ["se", "lo"], explanation: "se lo – Se = al cliente (IO) + lo = el contrato (DO). The director returned the contract to the client." },
+      { text: " devolvió al cliente con observaciones.\n\nLaura: —¿Y las instrucciones finales?\n\nPedro: —No te preocupes, ", isBlank: false },
+      { text: "", isBlank: true, correctAnswers: ["se", "las"], explanation: "se las – Se = al personal (IO) + las = las instrucciones (DO). I explained the instructions to the staff." },
+      { text: " expliqué al personal esta mañana.", isBlank: false },
+    ],
+    dropdownOptions: ["me", "te", "se", "le", "la", "lo", "les", "las", "los", "nos"],
+  },
+  {
+    id: 3,
+    title: "Conversación: Resultados y certificados",
+    segments: [
+      { text: "Yo: —Ayer revisé los resultados del examen. ¿Recuerdas que ", isBlank: false },
+      { text: "", isBlank: true, correctAnswers: ["se", "los"], explanation: "se los – Se = al grupo (IO) + los = los resultados (DO). You showed the results to the group." },
+      { text: " mostré al grupo?\n\nTú: —Sí, y luego ", isBlank: false },
+      { text: "", isBlank: true, correctAnswers: ["se", "los"], explanation: "se los – Se = a los estudiantes (IO) + los = los resultados (DO). You explained them to the students." },
+      { text: " explicaste a los estudiantes con mucho detalle. Por cierto, ¿ya preparaste los certificados?\n\nYo: —Sí, mañana ", isBlank: false },
+      { text: "", isBlank: true, correctAnswers: ["se", "los"], explanation: "se los – Se = a los alumnos (IO) + los = los certificados (DO). I will give the certificates to the students." },
+      { text: " entregaré a los alumnos. También revisé las fechas y ", isBlank: false },
+      { text: "", isBlank: true, correctAnswers: ["se", "las"], explanation: "se las – Se = a los coordinadores (IO) + las = las fechas (DO). I confirmed the dates to the coordinators." },
+      { text: " confirmé a los coordinadores.\n\nTú: —Perfecto. Yo imprimí los horarios y ", isBlank: false },
+      { text: "", isBlank: true, correctAnswers: ["los"], explanation: "los – Solo objeto directo (los horarios). I posted them on the board." },
+      { text: " pegué en el pizarrón.", isBlank: false },
+    ],
+    dropdownOptions: ["me", "te", "se", "le", "la", "lo", "les", "las", "los", "nos"],
+  },
+];
