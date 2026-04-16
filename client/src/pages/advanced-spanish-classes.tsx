@@ -28,7 +28,7 @@ export default function AdvancedSpanishClassesPage() {
             <div className="text-sm">
               <p>
                 <strong className="font-semibold">Write to me:</strong> WhatsApp only — no SMS<br />
-                <span className="text-gray-400">+52 220 280 9637</span>
+                <span className="text-gray-400">+52 2225508376</span>
               </p>
               <p className="mt-2">
                 <strong className="font-semibold">Email me for more information:</strong><br />
@@ -43,7 +43,7 @@ export default function AdvancedSpanishClassesPage() {
               <div className="flex flex-wrap gap-2.5">
                 <a
                   className="inline-flex items-center justify-center px-4 py-2 rounded-full text-sm font-medium bg-orange-500 text-slate-950 shadow-lg shadow-orange-500/35 hover:shadow-orange-500/45 hover:-translate-y-0.5 transition-all"
-                  href="https://wa.me/522202809637"
+                  href="https://wa.me/522225508376"
                   target="_blank"
                   rel="noopener noreferrer"
                   data-testid="link-whatsapp"
@@ -227,12 +227,12 @@ export default function AdvancedSpanishClassesPage() {
             <p className="text-sm">
               <span className="mr-1">👉</span> WhatsApp:{' '}
               <a
-                href="https://wa.me/522202809637"
+                href="https://wa.me/522225508376"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-orange-500 hover:underline"
               >
-                +52 220 280 9637
+                +52 2225508376
               </a>
               <br />
               <span className="mr-1">👉</span> Email:{' '}
