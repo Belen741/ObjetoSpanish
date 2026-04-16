@@ -144,25 +144,21 @@ export default function AdvancedSpanishClassesPage() {
 
           <div className="grid md:grid-cols-2 gap-5">
             <section className="rounded-2xl bg-slate-800/90 border border-slate-700 p-5">
-              <h2 className="text-lg font-semibold mb-2.5">My classes are ideal for you if…</h2>
+              <h2 className="text-lg font-semibold mb-2.5">This is perfect for you if…</h2>
               <ul className="ml-5 list-disc text-sm space-y-1">
-                <li>You already have an intermediate/advanced level</li>
-                <li>
-                  You want to work on your Spanish daily with the exercises I send you
-                </li>
-                <li>
-                  You need professional Spanish (work, daily life, travel,
-                  presentations)
-                </li>
+                <li>You already speak Spanish but struggle to speak fluently</li>
+                <li>You want to stop translating and start speaking naturally</li>
+                <li>You're ready to improve with real practice and feedback</li>
+                <li>You want to use Spanish confidently at work or in daily life</li>
               </ul>
             </section>
             
             <section className="rounded-2xl bg-slate-800/90 border border-slate-700 p-5">
-              <h2 className="text-lg font-semibold mb-2.5">These classes are NOT for you if…</h2>
+              <h2 className="text-lg font-semibold mb-2.5">This is NOT for you if…</h2>
               <ul className="ml-5 list-disc text-sm space-y-1">
-                <li>You're starting from zero</li>
-                <li>You only want casual conversation without guidance or corrections</li>
-                <li>You don't plan to commit to homework or ongoing practice</li>
+                <li>You're a complete beginner</li>
+                <li>You just want casual conversation without correction</li>
+                <li>You're not ready to practice outside of class</li>
               </ul>
             </section>
           </div>
